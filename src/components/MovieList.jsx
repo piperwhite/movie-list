@@ -1,4 +1,5 @@
 import Movie from './Movie.js';
+import SearchBar from './SearchBar.js';
 import movies from '../data/moviedata.js';
 
 class MovieList extends React.Component {
@@ -14,10 +15,17 @@ class MovieList extends React.Component {
 
   render () {
     return (
-      <div>
-        {this.state.movies.map( (movie) =>
-          <Movie movie= {movie}/>)}
-      </div>
+      <table class="outertable">
+        <tr>
+          <th> MovieList </th>
+        </tr>
+        <SearchBar class="searchbar"/>
+        <table class="list">
+          {this.state.movies.map( (movie) =>
+            <Movie movie= {movie}/>)}
+        </table>
+
+      </table>
     );
   }
 }
