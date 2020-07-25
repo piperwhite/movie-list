@@ -8,23 +8,59 @@ class MovieList extends React.Component {
     super(props);
 
     this.state = {
-      movies : movies
+      movies : movies,
+      filteredMovies: movies,
+      query: ""
     };
+    this.onSearched = this.onSearched.bind(this);
+    this.onChanged = this.onChanged.bind(this);
   }
 
+  onSearched(event){
+    event.preventDefault()
+    var newMovies = this.state.query === "" ? this.state.movies : this.state.movies.filter(movie => movie.title.includes(this.state.query));
+    this.setState({
+      filteredMovies: newMovies
+    })
+  }
+
+  onChanged(query){
+    this.setState({query: query});
+  }
 
   render () {
     return (
-      <table class="outertable">
-        <tr>
-          <th> MovieList </th>
-        </tr>
-        <SearchBar class="searchbar"/>
-        <table class="list">
-          {this.state.movies.map( (movie) =>
-            <Movie movie= {movie}/>)}
-        </table>
-
+      <table className="outertable">
+        <thead>
+          <tr>
+            <th> MovieList </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <SearchBar className="searchbar" handleChange={this.onChanged} onSearched= {this.onSearched}/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table className="list">
+                        <tbody>
+                          {this.state.filteredMovies.map( (movie) =>
+                            <Movie movie= {movie}/>)}
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
       </table>
     );
   }

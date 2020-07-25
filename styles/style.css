@@ -1,6 +1,6 @@
 @import url("http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css");
 
-table, th, td {
+th, .list tr, .outertable {
   border: 1px solid black;
   border-collapse: collapse;
 }
@@ -8,14 +8,15 @@ table, th, td {
 .outertable {
   table-layout: fixed;
   width: 500px;
-  margin: auto;
+  height: 500px;
+  text-align: center;
 }
 
 th {
   background-color: lightgray;
 }
 
-.input {
+.search {
   margin-top: 200px;
 }
 
