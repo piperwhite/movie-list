@@ -8,23 +8,23 @@ class MovieList extends React.Component {
     super(props);
 
     this.state = {
-      movies : movies,
+      movies: movies,
       filteredMovies: movies,
-      query: ""
+      query: ''
     };
     this.onSearched = this.onSearched.bind(this);
     this.onChanged = this.onChanged.bind(this);
   }
 
-  onSearched(event){
-    event.preventDefault()
-    var newMovies = this.state.query === "" ? this.state.movies : this.state.movies.filter(movie => movie.title.includes(this.state.query));
+  onSearched(event) {
+    event.preventDefault();
+    var newMovies = this.state.query === '' ? this.state.movies : this.state.movies.filter(movie => movie.title.includes(this.state.query));
     this.setState({
       filteredMovies: newMovies
-    })
+    });
   }
 
-  onChanged(query){
+  onChanged(query) {
     this.setState({query: query});
   }
 
@@ -50,8 +50,8 @@ class MovieList extends React.Component {
                     <td>
                       <table className="list">
                         <tbody>
-                          {this.state.filteredMovies.map( (movie) =>
-                            <Movie movie= {movie}/>)}
+                          {(this.state.filteredMovies.length !== 0) ?
+                          this.state.filteredMovies.map( (movie) => <Movie movie= {movie}/>) : 'no movie by that name found'}
                         </tbody>
                       </table>
                     </td>
